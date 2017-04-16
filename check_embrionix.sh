@@ -2,7 +2,7 @@
 # FILE: "check_embrionix.sh"
 # DESCRIPTION: Check status of embrionix emsfp-2022 devices.
 # AUTHOR: Toni Comerma
-# DATE: march-2017
+# DATE: april-2017
 #
 # Notes:
 
@@ -253,6 +253,5 @@ else
    write_status "ERROR: Unable to contact $HOST (curl error $CURL_STATUS)"
 
 fi
-
 
 # bye
