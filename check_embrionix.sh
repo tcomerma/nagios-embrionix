@@ -151,12 +151,12 @@ then
      # Status and video characteristics
      #
      # format_code_valid
-     FORMAT_CODE_VALID=`echo "$OUT" | egrep -o '"format_code_valid": "([0-9])"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
+     FORMAT_CODE_VALID=`echo "$OUT" | egrep -o '"format_code_valid": ?"([0-9])"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
      if [ "$FORMAT_CODE_VALID" == "1" ]
      then
         STATUS_PORT="$STATUS_PORT SDI OK "
         # format_code_p_scan
-        FORMAT_CODE_P_SCAN=`echo "$OUT" | egrep -o '"format_code_p_scan": "([0-9])"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
+        FORMAT_CODE_P_SCAN=`echo "$OUT" | egrep -o '"format_code_p_scan": ?"([0-9])"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
         case "$FORMAT_CODE_P_SCAN" in
           "0") STATUS_PORT="$STATUS_PORT Interlaced"
              ;;
@@ -167,7 +167,7 @@ then
              ;;
         esac
         # format_code_mode
-        FORMAT_CODE_MODE=`echo "$OUT" | egrep -o '"format_code_mode": "([0-9]*)"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
+        FORMAT_CODE_MODE=`echo "$OUT" | egrep -o '"format_code_mode": ?"([0-9]*)"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
         case "$FORMAT_CODE_MODE" in
           "0") STATUS_PORT="$STATUS_PORT HD"
              ;;
@@ -180,7 +180,7 @@ then
              ;;
         esac
         # format_code_format
-        FORMAT_CODE_FORMAT=`echo "$OUT" | egrep -o '"format_code_format": "([0-9]*)"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
+        FORMAT_CODE_FORMAT=`echo "$OUT" | egrep -o '"format_code_format": ?"([0-9]*)"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
         case "$FORMAT_CODE_FORMAT" in
           "0") STATUS_PORT="$STATUS_PORT 1920x1080"
              ;;
@@ -195,7 +195,7 @@ then
              ;;
         esac
         # format_code_rate
-        FORMAT_CODE_RATE=`echo "$OUT" | egrep -o '"format_code_rate": "([0-9]*)"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
+        FORMAT_CODE_RATE=`echo "$OUT" | egrep -o '"format_code_rate": ?"([0-9]*)"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
         case "$FORMAT_CODE_RATE" in
           "5120") STATUS_PORT="$STATUS_PORT 50Hz"
              ;;
@@ -214,7 +214,7 @@ then
              ;;
         esac
         # format_code_sampling
-        FORMAT_CODE_SAMPLING=`echo "$OUT" | egrep -o '"format_code_sampling": "([0-9]*)"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
+        FORMAT_CODE_SAMPLING=`echo "$OUT" | egrep -o '"format_code_sampling": ?"([0-9]*)"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
         case "$FORMAT_CODE_SAMPLING" in
           "0") STATUS_PORT="$STATUS_PORT Interlaced"
              ;;
@@ -237,9 +237,9 @@ then
      # Get counters
      if [ "$TYPE" == "ENCAP" ]
      then
-       PERF_PKT_CNT_CUR=`echo "$OUT" | egrep -o '"tx_pkt_cnt": "([0-9]*)"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
+       PERF_PKT_CNT_CUR=`echo "$OUT" | egrep -o '"tx_pkt_cnt": ?"([0-9]*)"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" ' `
      else
-       PERF_PKT_CNT_CUR=`echo "$OUT" | egrep -o '"rx_pkt_cnt": "([0-9]*)"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" '`
+       PERF_PKT_CNT_CUR=`echo "$OUT" | egrep -o '"rx_pkt_cnt": ?"([0-9]*)"' | awk "NR == ${PORT} " | cut -f 2 -d ":" | tr -d '" '`
      fi
      calc_diff
      PERF="$PERF PKT_CNT_${PORT}=$PERF_PKT_CNT_INC,"
